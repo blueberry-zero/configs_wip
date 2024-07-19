@@ -131,8 +131,18 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "0"
+set $ws10 "10"
 
+# set $ws1 "1: com"
+# set $ws2 "2: search "
+# set $ws3 "3: web"
+# set $ws4 "4: free"
+# set $ws5 "5: free2"
+# set $ws6 "6: app"
+# set $ws7 "7: admin"
+# set $ws8 "8: cli"
+# set $ws9 "9: server"
+# set $ws10 "10: src"
 # switch to workspacada1
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
