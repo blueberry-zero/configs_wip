@@ -279,11 +279,23 @@ bindsym $mod+F5 exec i3lock -c 000000
 
 
 # Testing
-
 gaps inner 10
-gaps outer 10
+# gaps outer 10
 
 default_border pixel 1
 default_floating_border pixel 1
 
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+
+
+# Enter resize mode
+# Enter logging mode
+bindsym $mod+g mode "logging"
+
+mode "logging" {
+    # Log message to i3-nagbar (type your message and press Enter)
+    bindsym q exec --no-startup-id i3-nagbar -t warning -m "hello my message"
+
+    # Exit logging mode
+    bindsym Escape mode "default"
+}
