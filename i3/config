@@ -197,6 +197,7 @@ bindsym $mod+r mode "resize"
 #         status_command i3status
 # }
 
+
 # Custom settings
 mouse_warping none
 
@@ -238,23 +239,23 @@ client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
 client.background        $base
 
 ### bar
-bar {
-  colors {
-    background         $base
-    statusline         $text
-    focused_statusline $text
-    active_workspace   $base $text $blue
-    focused_separator  $base
-    focused_workspace  $base $base $green
-    active_workspace   $base $base $blue
-    inactive_workspace $base $base $pink
-    urgent_workspace   $base $base $red
-    binding_mode       $base $base $surface1
-  }
-
-  status_command i3status
-
-}
+# bar {
+#   colors {
+#     background         $base
+#     statusline         $text
+#     focused_statusline $text
+#     active_workspace   $base $text $blue
+#     focused_separator  $base
+#     focused_workspace  $base $base $green
+#     active_workspace   $base $base $blue
+#     inactive_workspace $base $base $pink
+#     urgent_workspace   $base $base $red
+#     binding_mode       $base $base $surface1
+#   }
+#
+#   status_command i3status
+#
+# }
 # Custom Commands
 ## Move window to other monitor
 
@@ -267,8 +268,8 @@ bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 
 ## Dual Monitor commands
-bindsym $mod+F12 exec --no-startup-id DualMonitor 1
-bindsym $mod+F11 exec --no-startup-id DualMonitor 0
+bindsym $mod+F12 exec --no-startup-id multi-monitor
+bindsym $mod+F11 exec --no-startup-id laptop-monitor
 
 ## screenshot 
 bindsym Print exec "flameshot gui"
@@ -284,3 +285,5 @@ gaps outer 10
 
 default_border pixel 1
 default_floating_border pixel 1
+
+exec_always --no-startup-id ~/.config/polybar/launch.sh

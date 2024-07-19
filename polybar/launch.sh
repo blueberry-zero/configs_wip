@@ -4,4 +4,4 @@
 polybar-msg cmd quit
 
 # Launch polybar
-polybar example
+polybar -c /home/sjaan/.config/polybar/config.ini example
