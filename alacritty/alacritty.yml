@@ -1,14 +1,14 @@
 font:
-  # normal:
-  #   family: Hurmit
-  #   style: regular
-  # bold:
-  #   family: Hurmit
-  #   style: regular
-  # italic:
-  #   family: Hurmit
-  #   style: regular
-  size: 10
+  normal:
+    family: Hurmit Nerd Font
+    style: regular
+  bold:
+    family: Hurmit Nerd Font
+    style: regular
+  italic:
+    family: Hurmit Nerd Font
+    style: regular
+  size: 12
 
 cursor:
   style:
