@@ -45,4 +45,3 @@ require("lazy").setup("plugins", opts)
 require("custom.java")
 -- experimental
 require("core.testing");
-

@@ -155,6 +155,9 @@ local function setup_jdtls()
     local extendedClientCapabilities = jdtls.extendedClientCapabilities
     -- Modify one property called resolveAdditionalTextEditsSupport and set it to true
     extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+    -- disable jdtls spam
+    -- solution below doesn't work
+    -- extendedClientCapabilities.progressReportProvider = false
 
     -- Set the command that starts the JDTLS language server jar
     local cmd = {
@@ -327,6 +330,15 @@ local function setup_jdtls()
         vim.diagnostic.config(diag_config, bufnr) -- Set the config for the current buffer
     end
 
+    local handlers = {
+        ["language/status"] = function()
+            -- print(result)
+        end,
+        ["$/progress"] = function()
+            -- disable progress updates.
+        end,
+    }
+
     -- Create the configuration table for the start or attach function
     local config = {
         cmd = cmd,
@@ -335,6 +347,7 @@ local function setup_jdtls()
         capabilities = capabilities,
         init_options = init_options,
         on_attach = on_attach,
+        handlers = handlers
     }
 
     -- Start the JDTLS server
