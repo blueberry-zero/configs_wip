@@ -283,7 +283,7 @@ bindsym $mod+F12 exec --no-startup-id multi-monitor
 bindsym $mod+F11 exec --no-startup-id laptop-monitor
 
 ## screenshot 
-bindsym Print exec "flameshot gui"
+bindsym Print exec "flameshot gui;pkill -f flameshot"
 
 ## Lock screen
 bindsym $mod+F5 exec i3lock -c 000000
