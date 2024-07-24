@@ -1,0 +1,3 @@
+cmd run_and_close !sh /home/sjaan/src/configs/lf/functions/alacritty_open.sh $fx &
+map u run_and_close
+
