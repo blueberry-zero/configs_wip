@@ -10,5 +10,3 @@ xrandr --output "$laptop_monitor" --auto
 
 # Disable external monitors
 xrandr --output "$left_monitor" --off --output "$right_monitor" --off
-
-polybar_launch s

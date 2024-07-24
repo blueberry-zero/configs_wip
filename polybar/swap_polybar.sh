@@ -1,29 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
+# Terminate polybar instances
 polybar-msg cmd quit
 
-# Path to your Polybar config file
 config_file="/home/sjaan/.config/polybar/config.ini"
-#
-# Check if an argument is provided
-if [ $# -eq 0 ]; then
-    polybar -c "$config_file" monitor0
-    export POLYBAR_MONITOR="LAPTOP"
+# Launch polybar
+polybar -c "$config_file" monitor0
+# polybar -c /home/sjaan/.config/polybar/config.ini monitor1
+# polybar -c /home/sjaan/.config/polybar/config.ini monitor2
+#!/bin/bash
 
-    exit 0
-fi
 
-# Get the first argument
-option="$1"
-
-# Check the argument's value
-if [ "$option" = "s" ]; then
+if [ "$POLYBAR_MONITOR" = "MULTI_HOME" ]; then
     # Single monitor configuration
     polybar -c "$config_file" monitor0
     export POLYBAR_MONITOR="LAPTOP"
-elif [ "$option" = "d" ]; then
+elif [ "$POLYBAR_MONITOR" = "LAPTOP" ]; then
     # Double monitor configuration 
     polybar -c "$config_file" monitor1  # Uncomment if you have a second monitor
     polybar -c "$config_file" monitor2  # Uncomment if you have a third monitor
     export POLYBAR_MONITOR="MULTI_HOME"
 fi
+
+export POLYBAR_MONITOR="LAPTOP"

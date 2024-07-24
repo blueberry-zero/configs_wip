@@ -271,6 +271,15 @@ bindsym $mod+F1 exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym $mod+F2 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%
 bindsym $mod+F3 exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%
 
+## Lock screen
+bindsym $mod+F4 exec i3lock -c 000000
+
+## Brightness ctrl
+bindsym $mod+F5 exec --no-startup-id brightnessctl s 1%+
+bindsym $mod+F6 exec --no-startup-id brightnessctl s 1%-
+
+## polybar
+bindsym $mod+F7 exec --no-startup-id polybar_launch d
 ## Dual Monitor commands
 bindsym $mod+F12 exec --no-startup-id multi-monitor
 bindsym $mod+F11 exec --no-startup-id laptop-monitor
@@ -278,8 +287,6 @@ bindsym $mod+F11 exec --no-startup-id laptop-monitor
 ## screenshot 
 bindsym Print exec "flameshot gui; pkill -f flameshot"
 
-## Lock screen
-bindsym $mod+F5 exec i3lock -c 000000
 
 # Testing
 gaps inner 10
