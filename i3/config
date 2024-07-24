@@ -287,7 +287,7 @@ gaps inner 10
 default_border pixel 1
 default_floating_border pixel 1
 
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id polybar_launch s
 
 # Enter logging mode
 bindsym $mod+g mode "logging"

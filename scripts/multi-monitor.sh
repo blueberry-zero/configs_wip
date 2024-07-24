@@ -13,3 +13,6 @@ xrandr \
   --output "$left_monitor" --auto --left-of "$right_monitor" \
   --output "$right_monitor" --auto
 
+sleep 3
+
+polybar_launch d
