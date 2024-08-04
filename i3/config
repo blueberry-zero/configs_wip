@@ -280,6 +280,7 @@ bindsym $mod+F6 exec --no-startup-id brightnessctl s 1%-
 
 ## polybar
 bindsym $mod+F7 exec --no-startup-id polybar_launch d
+bindsym $mod+F8 exec --no-startup-id polybar_launch s
 ## Dual Monitor commands
 bindsym $mod+F12 exec --no-startup-id multi-monitor
 bindsym $mod+F11 exec --no-startup-id laptop-monitor

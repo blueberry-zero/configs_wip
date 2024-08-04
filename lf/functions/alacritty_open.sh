@@ -21,4 +21,5 @@ else
 fi
 
 # Launch Alacritty with the correct working directory
-alacritty --working-directory="$working_dir" > /dev/null & 
+nohup alacritty --working-directory="$working_dir" > /dev/null &
+
