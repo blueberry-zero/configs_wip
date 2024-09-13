@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -298,12 +298,9 @@ default_floating_border pixel 1
 exec_always --no-startup-id polybar_launch s
 
 # Enter logging mode
-bindsym $mod+g mode "logging"
+bindsym $mod+g mode "jetbrains"
 
-mode "logging" {
-    # Log message to i3-nagbar (type your message and press Enter)
-    bindsym q exec --no-startup-id i3-nagbar -t warning -m "hello my message"
-
+mode "jetbrains" {
     # Exit logging mode
     bindsym Escape mode "default"
 }
