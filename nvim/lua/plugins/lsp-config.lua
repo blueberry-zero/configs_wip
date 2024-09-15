@@ -2,17 +2,24 @@
 -- lua.plugins.lsp-config.lua
 -- ]]
 
--- Specify how the border looks like
-local border = {
-    { '┌', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '┐', 'FloatBorder' },
-    { '│', 'FloatBorder' },
-    { '┘', 'FloatBorder' },
-    { '─', 'FloatBorder' },
-    { '└', 'FloatBorder' },
-    { '│', 'FloatBorder' },
-}
+-- Decorate floating windows
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+    vim.lsp.handlers.hover,
+    { border = "single" }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+    vim.lsp.handlers.signature_help,
+    { border = "single" }
+)
+
+-- Add border to the diagnostic popup window
+vim.diagnostic.config({
+    virtual_text = {
+        prefix = '■ ', -- Could be '●', '▎', 'x', '■', , 
+    },
+    float = { border = "single" },
+})
 
 return {
     "neovim/nvim-lspconfig",

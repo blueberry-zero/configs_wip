@@ -65,56 +65,56 @@ local function java_keymaps()
     -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
     vim.keymap.set(
         "n",
-        "<leader>Jo",
+        "<leader>jo",
         "<Cmd> lua require('jdtls').organize_imports()<CR>",
         { desc = "[J]ava [O]rganize Imports" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable
     vim.keymap.set(
         "n",
-        "<leader>Jv",
+        "<leader>jv",
         "<Cmd> lua require('jdtls').extract_variable()<CR>",
         { desc = "[J]ava Extract [V]ariable" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + v to extract the code selected in visual mode to a variable
     vim.keymap.set(
         "v",
-        "<leader>Jv",
+        "<leader>jv",
         "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>",
         { desc = "[J]ava Extract [V]ariable" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code under the cursor to a static variable
     vim.keymap.set(
         "n",
-        "<leader>JC",
+        "<leader>jC",
         "<Cmd> lua require('jdtls').extract_constant()<CR>",
         { desc = "[J]ava Extract [C]onstant" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code selected in visual mode to a static variable
-    vim.keymap.set(
-        "v",
-        "<leader>JC",
-        "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>",
-        { desc = "[J]ava Extract [C]onstant" }
-    )
+    -- vim.keymap.set(
+    --     "v",
+    --     "<leader>jC",
+    --     "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>",
+    --     { desc = "[J]ava Extract [C]onstant" }
+    -- )
     -- Set a Vim motion to <Space> + <Shift>J + t to run the test method currently under the cursor
     vim.keymap.set(
         "n",
-        "<leader>Jt",
+        "<leader>jt",
         "<Cmd> lua require('jdtls').test_nearest_method()<CR>",
         { desc = "[J]ava [T]est Method" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + t to run the test method that is currently selected in visual mode
     vim.keymap.set(
         "v",
-        "<leader>Jt",
+        "<leader>jt",
         "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>",
         { desc = "[J]ava [T]est Method" }
     )
     -- Set a Vim motion to <Space> + <Shift>J + <Shift>T to run an entire test suite (class)
-    vim.keymap.set("n", "<leader>JT", "<Cmd> lua require('jdtls').test_class()<CR>", { desc = "[J]ava [T]est Class" })
+    vim.keymap.set("n", "<leader>jT", "<Cmd> lua require('jdtls').test_class()<CR>", { desc = "[J]ava [T]est Class" })
     -- Set a Vim motion to <Space> + <Shift>J + u to update the project configuration
-    vim.keymap.set("n", "<leader>Ju", "<Cmd> JdtUpdateConfig<CR>", { desc = "[J]ava [U]pdate Config" })
+    vim.keymap.set("n", "<leader>ju", "<Cmd> JdtUpdateConfig<CR>", { desc = "[J]ava [U]pdate Config" })
 end
 
 local function setup_jdtls()
@@ -174,12 +174,9 @@ local function setup_jdtls()
         "--add-opens",
         "java.base/java.lang=ALL-UNNAMED",
         "-javaagent:" .. lombok,
-        "-jar",
-        launcher,
-        "-configuration",
-        os_config,
-        "-data",
-        workspace_dir,
+        "-jar", launcher,
+        "-configuration", os_config,
+        "-data", workspace_dir,
     }
 
     -- Configure settings in the JDTLS server
@@ -188,7 +185,7 @@ local function setup_jdtls()
             -- Enable code formatting
             format = {
                 enabled = true,
-                -- Use the Google Style guide for code formattingh
+                -- Use the Google Style guide for code formatting
                 settings = {
                     url = vim.fn.stdpath("config") .. "/lang_servers/intellij-java-google-style.xml",
                     profile = "GoogleStyle",
@@ -208,6 +205,10 @@ local function setup_jdtls()
             -- Enable method signature help
             signatureHelp = {
                 enabled = true,
+            },
+            -- include decompiled sources
+            references = {
+                includeDecompiledSources = true,
             },
             -- Use the fernflower decompiler when using the javap command to decompile byte code back to java code
             contentProvider = {
@@ -330,15 +331,6 @@ local function setup_jdtls()
         vim.diagnostic.config(diag_config, bufnr) -- Set the config for the current buffer
     end
 
-    local handlers = {
-        ["language/status"] = function()
-            -- print(result)
-        end,
-        ["$/progress"] = function()
-            -- disable progress updates.
-        end,
-    }
-
     -- Create the configuration table for the start or attach function
     local config = {
         cmd = cmd,
@@ -347,7 +339,6 @@ local function setup_jdtls()
         capabilities = capabilities,
         init_options = init_options,
         on_attach = on_attach,
-        handlers = handlers
     }
 
     -- Start the JDTLS server

@@ -31,3 +31,8 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.treesitter.start()
   end,
 })
+
+vim.keymap.set("i", "<C-s>", function()
+    vim.cmd("startinsert!")
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>", true, true, true), 'n', false)
+end, { expr = true })
