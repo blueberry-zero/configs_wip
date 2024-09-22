@@ -24,7 +24,6 @@ return {
                 file_ignore_patterns = {
                     "bin",
                     "class",
-                    "gradle"
                 }
             },
             extensions = {
