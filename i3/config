@@ -302,5 +302,5 @@ bindsym $mod+g mode "jetbrains"
 
 mode "jetbrains" {
     # Exit logging mode
-    bindsym Escape mode "default"
+    bindsym $mod+Escape mode "default"
 }
