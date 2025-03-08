@@ -21,6 +21,9 @@ return {
         require("telescope").setup({
             defaults = {
                 -- path_display = {  truncate = 4 },
+				file_ignore_patterns = {
+					"target"
+				}
             },
             extensions = {
                 ["ui-select"] = {
@@ -76,5 +79,36 @@ return {
         vim.keymap.set("n", "<leader>sn", function()
             builtin.find_files({ cwd = vim.fn.stdpath("config") })
         end, { desc = "[S]earch [N]eovim files" })
+
+		  --  Fuzzy find files with a filter
+		   local function filtered_find_files()
+            local ignore_patterns = {
+                "node_modules",
+                ".git",
+                "*.o",
+                "*.obj",
+                "*.dll",
+                "*.class",
+            }
+
+            builtin.find_files({
+                prompt_title = "Find Files with Filter",
+                cwd = vim.fn.getcwd(),
+                file_sorter = require("telescope.sorters").get_fuzzy_file,
+                filtering_strategy = "fuzzy",
+                generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+                previewer = require("telescope.previewers").vim_buffer_cat.new,
+                finder = require("telescope.finders").new_oneshot_job({
+                    "fd",
+                    "--type",
+                    "f",
+                    "--hidden", -- Optional: include hidden files
+                    "--exclude",
+                    unpack(ignore_patterns),
+                }),
+            })
+        end
+
+        vim.keymap.set("n", "<leader>ff", filtered_find_files, { desc = "[F]ind [F]iles with Filter" })
     end
 }
